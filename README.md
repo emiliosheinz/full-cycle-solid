@@ -12,7 +12,7 @@ SOLID is an acronym for five principles that help software developers design mai
 
 A class should have one and only one reason to change, meaning that a class should have only one job. If a class has more than one responsibility, it becomes coupled. A change to one responsibility results to modification of the other responsibility too.
 
-In this example, the User class violates SRP by having both responsibilities of displaying user details and saving to the database. The refactored version consists of two separate classes (UserInfo and UserDatabase), each with a single responsibility. This adheres to the Single Responsibility Principle and makes the code more modular and maintainable.
+In the example below, the `User` class violates SRP by having both responsibilities of displaying user details and saving to the database. The refactored version consists of two separate classes (`User` and `UserDatabase`), each with a single responsibility. This adheres to the Single Responsibility Principle and makes the code more modular and maintainable.
 
 **Violation of SRP**:
 ```js
@@ -59,7 +59,7 @@ class UserDatabase {
 }
 ```
 
-**Usage:**
+**Usage example:**
 ```js
 const user = new User("John Doe", 25);
 user.displayDetails();
@@ -141,7 +141,7 @@ shoppingCartPayPal.checkout(50);
 
 Subclasses should be substitutable for their base classes. This means that a subclass should override the parent class methods in a way that does not break functionality from a client’s point of view.
 
-In the example below, we have a base `class Shape` with a method area. The `Square` and `Circle` classes are subclasses that override the area method, ensuring that they can be substituted for the base class without breaking the client code (the `printArea function`). The `printArea function` takes a `Shape`` as a parameter and prints its area, demonstrating the Liskov Substitution Principle in action.
+In the example below, we have a base class `Shape` with a method area. The `Square` and `Circle` classes are subclasses that override the area method, ensuring that they can be substituted for the base class without breaking the client code (the `printArea` function). The `printArea` function takes a `Shape` as a parameter and prints its area, demonstrating the Liskov Substitution Principle in action.
 
 ```js    
 class Shape {
@@ -190,9 +190,9 @@ printArea(circle); // Output: Area: 28.274333882308138
 
 A class should never be forced to implement an interface that it doesn’t use or classes shouldn’t be forced to depend on methods they do not use. This principle deals with the disadvantages of implementing big interfaces and promotes splitting them into smaller ones.
 
-In the example below, the `Worker` class violates the Interface Segregation Principle by having a single interface with both `work` and `eat` methods. The improved version uses two separate interfaces (`Workable` and `Eatable`), and the improved `Worker` class implements these interfaces separately. The client code (performTasks function) now depends only on the specific interfaces it needs, avoiding unnecessary dependencies on methods that are not used.
+In the example below, the `Worker` class violates the Interface Segregation Principle by having a single interface with both `work` and `eat` methods. The improved version uses two separate interfaces (`Workable` and `Eatable`), and the improved `Worker` class implements these interfaces separately. The client code (`performTasks` function) now depends only on the specific interfaces it needs, avoiding unnecessary dependencies on methods that are not used.
 
-**Interface segregation violation:**
+**Violation of ISP:**
 ```js
 class Worker {
   work() {
@@ -205,7 +205,7 @@ class Worker {
 }
 ```
 
-**Interface segregation improvement::**
+**Adhering to ISP:**
 ```js
 class Workable {
   work() {
@@ -251,9 +251,9 @@ performTasks(worker);
 
 Entities must depend on abstractions, not on implementations. It states that the high-level module must not depend on the low-level module, but they should depend on abstractions.
 
-In the provided example, a violation of the Dependency Inversion Principle (DIP) is initially demonstrated by a high-level module, `NotificationService`, directly depending on low-level modules (`EmailNotificationSender` and `SMSNotificationSender`). The improvement section addresses this violation by introducing an abstraction, `NotificationSender`, acting as an interface. Concrete implementations (`EmailNotificationSender` and `SMSNotificationSender`) inherit from this interface, establishing a clear separation of concerns. The final usage example illustrates how instances of the concrete implementations are created and injected into the NotificationService, showcasing a design that adheres to the Dependency Inversion Principle. This adherence ensures that high-level and low-level modules depend on abstractions, fostering flexibility and maintainability in the codebase.
+In the provided example, a violation of the Dependency Inversion Principle is initially demonstrated by a high-level module, `NotificationService`, directly depending on low-level modules (`EmailNotificationSender` and `SMSNotificationSender`). The improvement section addresses this violation by introducing an abstraction, `NotificationSender`, acting as an interface. Concrete implementations (`EmailNotificationSender` and `SMSNotificationSender`) inherit from this interface, establishing a clear separation of concerns. The final usage example illustrates how instances of the concrete implementations are created and injected into the NotificationService, showcasing a design that adheres to the Dependency Inversion Principle. This adherence ensures that high-level and low-level modules depend on abstractions, fostering flexibility and maintainability in the codebase.
 
-**Dependency Inversion violation:**
+**Violation of DIP:**
 ```js
 // Low-level module
 class EmailNotificationSender {
@@ -291,7 +291,7 @@ class NotificationService {
 }
 ```
 
-**Dependency Inversion improvement:**
+**Adhering to DIP:**
 ```js
 // Abstraction (Interface)
 class NotificationSender {
